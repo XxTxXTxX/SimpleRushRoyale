@@ -14,14 +14,12 @@ public class Card implements Cards{
 	private String description;
 	private int level;
 	private int damage;
-	private double attackSpeed;
 	private boolean onAttack;
 	
-	public Card(String name, int damage, double speed) {
+	public Card(String name, int damage) {
 		this.name = name;
 		this.level = 1;
 		this.damage = (int) (damage * level * 1.3);
-		this.attackSpeed = speed;
 		this.onAttack = false;
 
 	}
@@ -30,10 +28,7 @@ public class Card implements Cards{
 		this.damage = damage;
 		
 	}
-	@Override
-	public void setAttackSpeed(double speed) {
-		this.attackSpeed = speed;
-	}
+
 	@Override
 	public void setDescription(String description) {
 		this.description = description;
@@ -41,16 +36,13 @@ public class Card implements Cards{
 	}
 	@Override
 	public void displayCard() {
-		System.out.println("This card is " + this.name + ", damage = " + this.damage + ", attackSpeed = " + this.attackSpeed + ", " + this.description);
+		System.out.println("This card is " + this.name + ", damage = " + this.damage +  ", " + this.description);
 	}
 	@Override
 	public int getDamage() {
 		return this.damage;
 	}
-	@Override
-	public double getAttackSpeed() {
-		return this.attackSpeed;
-	}
+
 	@Override
 	public String getDescription() {
 		return this.description;
@@ -61,7 +53,7 @@ public class Card implements Cards{
 	}
 	
 	public Cards getCard() {
-		return new Card(this.name, this.damage, this.attackSpeed);
+		return new Card(this.name, this.damage);
 	}
 	@Override
 	public boolean upperLevel() {
@@ -104,8 +96,8 @@ public class Card implements Cards{
 	}
 	
 	@Override
-	public void attack(Enemy enemy) {
-		enemy.takeDamage(this.damage);		
+	public void attack(Enemy enemy, int probCriticalDamage) {
+		enemy.takeDamage(this.damage * probCriticalDamage);		
 	}
 	
 	

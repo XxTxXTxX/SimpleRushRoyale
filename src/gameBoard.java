@@ -36,6 +36,7 @@ public class gameBoard {
 	private int manaSpent;
 	private int enemyCounter;
 	private int[] attackable;
+	private manaSystem manaSystem;
 
 	public gameBoard(Player player1) {
 		this.board = new Cards[1][5];
@@ -44,6 +45,7 @@ public class gameBoard {
 		this.roundCount = 0;
 		this.manaSpent = 10;
 		this.attackable = new int[5];
+		this.manaSystem = new manaSystem();
 		System.out.println("Player " + player1.getName() + " entered game!");
 	}
 	
@@ -168,6 +170,7 @@ public class gameBoard {
 		    System.out.println("Attack: Please enter the number of enemy you want to attack with the number of card, example 'attack(1, 2), 1 is the enemy number and 2 is your second card'");
 		    System.out.println("Spawn: Simple type 'spawn' then board will randomly generate one card on random position");
 		    System.out.println("Display: Simple type 'display' to see what you have on board");
+		    System.out.println("Level: Simple type 'level' to level up your manaSystem, which allows you get more mana per round.");
 		    System.out.println("end: Simple type 'end' to end your turn");
 		}
 		else {
@@ -186,6 +189,16 @@ public class gameBoard {
 		    combineCards(c3 - 1, c4 - 1);
 	    }
 	    
+	    else if (c.equalsIgnoreCase("level")) {
+	    	if (!manaSystem.is_LevelFull()) {
+	    		System.out.println("Mana System is in level 10 and can not be upgraded any more!");
+	    		return;
+	    	}
+	    	else {
+	    		manaSystem.addLevel();
+	    	}
+	    }
+	    
 	    
 	    else if (c.equalsIgnoreCase("attack")) {
 	    	Scanner c1 = new Scanner(System.in);
@@ -195,9 +208,14 @@ public class gameBoard {
 		    System.out.println("Please Enter which card you want to attack the enemy: ");
 		    int c4 = c1.nextInt();
 		    
+		    if (c3 > enemyStore.size() || c4 > 5) {
+		    	System.out.println("You attacking non-exist enemy or you entered too large number, please retry.");
+		    	return;
+		    }
+		    
 		    if (attackable[c4 - 1] == 1) {
-		    	if (board[0][c4 - 1] != null) {
-		    		board[0][c4 - 1].attack(enemyStore.get(c3 - 1));
+		    	if (board[0][c4 - 1] != null && enemyStore.get(c3 - 1) != null) {
+		    		board[0][c4 - 1].attack(enemyStore.get(c3 - 1), player1.getCriticalChance());
 				    attackable[c4 - 1] = 0;
 				    if (enemyStore.get(c3 - 1).isDead()) {
 				    	player1.addMana(10 * roundCount);
@@ -285,6 +303,7 @@ public class gameBoard {
 		System.out.println(enemyStore);
 		editRoundTurn(0);
 		roundCount++;
+		player1.addMana(manaSystem.manaAdd());
 	}
 	
 	

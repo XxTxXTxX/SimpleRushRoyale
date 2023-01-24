@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 import Cards.Cards;
 import Cards.CardsStorage;
@@ -12,12 +13,14 @@ public class Player {
 	private CardsStorage availableCards;
 	private int currentSet = 0;
 	private int mana;
+	private int criticalDamageMultiplier;
 	
 	public Player(String name) {
 		this.playerName = name;
 		this.playerSets = new Cards[2][5];
 		this.availableCards = new CardsStorage();
 		this.mana = 100;
+		this.criticalDamageMultiplier = 500;
 	}
 	
 	public void startSetting(Player player) {
@@ -78,6 +81,15 @@ public class Player {
 		this.mana -= mana;
 	}
 	
+	public int getCriticalChance() {
+	    Random rand = new Random(); 
+	    int int_random = rand.nextInt(2); 
+	    if (int_random == 0) {
+	    	return 1;
+	    }
+	    System.out.println("Critical attack!!!!");
+		return (this.criticalDamageMultiplier / 100);
+	}
 
 	
 	public void displayGamingSets() {

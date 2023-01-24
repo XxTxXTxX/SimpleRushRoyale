@@ -6,12 +6,12 @@ public class CardsStorage{
 	private ArrayList<Cards> data = new ArrayList<Cards>();
 	
 	public CardsStorage() {
-		Cards hammer = new Card("锤", 237, 1.2);
-		Cards qishi = new Card("骑士", 0, 0);
-		Cards frog = new Card("蛤蟆", 35, 0.52);
-		Cards green = new Card("小绿人", 18, 0.7);
-		Cards joker = new Card("红小丑", 22, 0.3);
-		Cards yun = new Card("晕", 110, 0.6);
+		Cards hammer = new Card("锤", 237);
+		Cards qishi = new Card("骑士", 0);
+		Cards frog = new Card("蛤蟆", 35);
+		Cards green = new Card("小绿人", 18);
+		Cards joker = new Card("红小丑", 22);
+		Cards yun = new Card("晕", 110);
 		data.add(joker);
 		data.add(yun);
 		data.add(green);

@@ -3,7 +3,7 @@ package Enemy;
 public class SmallBoss extends Enemy{
 	
 	public SmallBoss(int round) {
-		this.health = 2042 * round;
+		this.health = 2042 * (round + 1);
 		this.refreshTime = 15;
 		this.armor = 30; //It should be percentage so 30%, when calculating = 30/100 = 0.3 = 30%.
 		this.isDead = false;

@@ -4,7 +4,7 @@ package Enemy;
 public class Minion extends Enemy{
 
 	public Minion(int round) {
-		this.health = 255 * round;
+		this.health = 255 * (round + 1);
 		this.refreshTime = 2;
 		this.armor = 15 ; //It should be percentage so 15%, when calculating = 15/100 = 0.15 = 15%.
 		this.isDead = false;
