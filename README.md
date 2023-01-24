@@ -20,6 +20,7 @@ Latest Version (0.0.2):
   3. Improved performance and code is much more clean!!!!!!!!!!!!!!
 
 
+2023/01/23 ----------
 
-
-
+  1. Added new feature Mana System, now it allows players to get mana at the beginning of each round, so players won't be so boring to attack a strong enemy for infinite rounds :)
+  2. "Attack Speed" feature for cards is removed, we initially want to create a game that allows all the cards attacking enemies together, however there had some technical difficulties so we changed game mode to Turn Based game, thus "Attack Speed" is no longer useful for current game mode.
